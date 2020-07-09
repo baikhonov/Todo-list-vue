@@ -35,7 +35,15 @@
     }
 
     input {
-        width: 400px;
-        margin-right: 1rem;
+        max-width: 150px;
+        margin-right: 5px;
+
+        font-size: 1rem;
+    }
+
+    button {
+        flex-shrink: 0;
+        font-size: 1rem;
+        line-height: 1rem;
     }
 </style>

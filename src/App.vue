@@ -1,12 +1,9 @@
 <template>
     <div id="app">
-        <h1>Список дел</h1>
-        <AddTodo @add-todo="addTodo"></AddTodo>
+        <h1>Todo Vue application</h1>
         <hr>
-        <TodoList
-                v-bind:todos="todos"
-                @remove-todo="removeTodo"
-        ></TodoList>
+
+        <router-view ></router-view>
     </div>
 </template>
 
@@ -18,12 +15,15 @@
         name: 'App',
         data() {
             return {
-                todos: [
-                    {id: 1, title: 'Купить хлеб', completed: false},
-                    {id: 2, title: 'Купить масло', completed: false},
-                    {id: 3, title: 'Купить пиво', completed: false}
-                ]
+                todos: []
             }
+        },
+        mounted() {
+            fetch('https://jsonplaceholder.typicode.com/todos?_limit=5')
+                .then(response => response.json())
+                .then(json => {
+                    this.todos = json
+                })
         },
         methods: {
             removeTodo(id) {
